@@ -5,17 +5,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-
-
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <div class="container">
+    <h1>Index</h1>
+    <p>
+        <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
+    </p>
+
     <div class="table-responsive text-left">
-        <table id="example" class="table table-striped text-left  table-hover" style="width:100%">
+        <table id="customerDatatable" class="table table-striped text-left  table-hover" style="width:100%">
             <thead>
                 <tr>
                     <th>First Name</th>
@@ -45,9 +43,9 @@
                         </td>
                         <td class="font-weight-bold">@item.College</td>
                         <td>
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a  asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a class="text-danger"  asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-sm btn-info" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a class="btn btn-sm btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
                     </tr>
                 }
@@ -57,6 +55,9 @@
     </div>
 </div>
 
-<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
-<script src='/js/customerDatatable.js'></script>
+@section Scripts
+{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/customerDatatable.js"></script>
+}
