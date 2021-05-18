@@ -1,4 +1,5 @@
-﻿using Book.Pages.Users;
+﻿using Book.Pages.Students;
+using Book.Pages.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,5 +16,6 @@ namespace Book.Data
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<Student> Student { get; set; }
     }
 }
