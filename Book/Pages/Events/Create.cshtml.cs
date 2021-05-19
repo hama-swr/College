@@ -12,14 +12,19 @@ namespace Book.Pages.Events
     public class CreateModel : PageModel
     {
         private readonly Book.Data.ApplicationDbContext _context;
+        private readonly IHtmlHelper htmlHelper;
+        public IEnumerable<SelectListItem> EventTypes { get; set; }
 
-        public CreateModel(Book.Data.ApplicationDbContext context)
+        public CreateModel(Book.Data.ApplicationDbContext context,
+                                            IHtmlHelper htmlHelper)
         {
             _context = context;
+            this.htmlHelper = htmlHelper;
         }
 
         public IActionResult OnGet()
         {
+            EventTypes = htmlHelper.GetEnumSelectList<EventType>();
             return Page();
         }
 
@@ -30,6 +35,7 @@ namespace Book.Pages.Events
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            EventTypes = htmlHelper.GetEnumSelectList<EventType>();
             if (!ModelState.IsValid)
             {
                 return Page();

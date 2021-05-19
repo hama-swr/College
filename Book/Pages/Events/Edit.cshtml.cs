@@ -13,10 +13,14 @@ namespace Book.Pages.Events
     public class EditModel : PageModel
     {
         private readonly Book.Data.ApplicationDbContext _context;
+        private readonly IHtmlHelper htmlHelper;
+        public IEnumerable<SelectListItem> EventTypes { get; set; }
 
-        public EditModel(Book.Data.ApplicationDbContext context)
+        public EditModel(Book.Data.ApplicationDbContext context,
+                                          IHtmlHelper htmlHelper)
         {
             _context = context;
+            this.htmlHelper = htmlHelper;
         }
 
         [BindProperty]
@@ -24,6 +28,8 @@ namespace Book.Pages.Events
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            EventTypes = htmlHelper.GetEnumSelectList<EventType>();
+
             if (id == null)
             {
                 return NotFound();
@@ -42,6 +48,8 @@ namespace Book.Pages.Events
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            EventTypes = htmlHelper.GetEnumSelectList<EventType>();
+
             if (!ModelState.IsValid)
             {
                 return Page();

@@ -182,3 +182,7 @@ body {
 .fa-twitter {
     color: #55acee
 }
+
+.events-card {
+    border-radius: 0!important;
+}

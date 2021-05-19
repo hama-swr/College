@@ -5,56 +5,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
+<h1>Index</h1>
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].EventType)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Event) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventType)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="d-flex justify-content-center container mt-5">
+
+    <div class="card-deck">
+        @foreach (var item in Model.Event)
+        {
+        <div class="card">
+            <img src="@item.Photo" class="h-50 events-card card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title text-info">@item.Title</h4>
+                <h6 class="text-warning font-weight-bolder">@item.EventType</h6>
+                <p class="card-text">@item.Content</p>
+                <p class="card-text"><small class="text-info">By @item.Author</small></p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="text-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </small>
+            </div>
+        </div>
+        }
+    </div>
+</div>
