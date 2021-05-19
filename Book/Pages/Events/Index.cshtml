@@ -6,32 +6,37 @@
 }
 
 
-<h1>Index</h1>
-<p>
-    <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
-</p>
+<div class="container">
 
-<div class="d-flex justify-content-center container mt-5">
+    <h1>Index</h1>
 
-    <div class="card-deck">
-        @foreach (var item in Model.Event)
-        {
-        <div class="card">
-            <img src="@item.Photo" class="h-50 events-card card-img-top" alt="...">
-            <div class="card-body">
-                <h4 class="card-title text-info">@item.Title</h4>
-                <h6 class="text-warning font-weight-bolder">@item.EventType</h6>
-                <p class="card-text">@item.Content</p>
-                <p class="card-text"><small class="text-info">By @item.Author</small></p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a class="text-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </small>
-            </div>
+    <p>
+        <a class="btn btn-sm btn-primary" asp-page="Create">Create Event</a>
+    </p>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            @foreach (var item in Model.Event)
+            {
+                <div class="col-md-4 mb-5">
+                    <div class="card">
+                        <img src="@item.Photo" class="h-50 events-card card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title text-info">@item.Title</h4>
+                            <h6 class="text-warning font-weight-bolder">@item.EventType</h6>
+                            <p class="card-text">@item.Content</p>
+                            <p class="card-text"><small class="text-info">By @item.Author</small></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                <a class="text-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-        }
     </div>
 </div>
