@@ -1,0 +1,49 @@
+﻿@page
+@model Book.Pages.Newses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+
+    <h1>Index</h1>
+
+    <p>
+        <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
+    </p>
+
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            @foreach (var item in Model.News)
+            {
+                <div class="col-md-8 mb-4">
+                    <div class="d-flex flex-row"></div>
+                    <div class="row news-card p-3 bg-white">
+                        <div class="col-md-4">
+                            <div class="feed-image"><img class="news-feed-image rounded img-fluid img-responsive" src="@item.Photo"></div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="news-feed-text">
+                                <h5>@item.Title</h5><span>@item.Content<br></span>
+                                <div class="d-flex flex-row justify-content-between align-items-center mt-3">
+                                    <div class="d-flex creator-profile">
+                                        <img class="rounded-circle" src="@item.Photo" width="50" height="50">
+                                        <div class="d-flex flex-column ml-3">
+                                            <h6 class="username">@item.Author</h6>
+                                        </div>
+                                    </div><i class="fa fa-share share"></i>
+                                </div>
+                                <div class="footer fixed-bottom">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                    <a class="text-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

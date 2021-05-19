@@ -37,7 +37,7 @@
                 @Html.DisplayFor(model => model.Student.College)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Student.Photo)
+                <div style=" background-size: cover;height: 70px;width:70px; background-image: url('@Model.Student.Photo')"></div>
             </dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Student.Photo)
