@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.Event.Photo)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Event.Photo)
+                <div style=" background-size: cover;height: 70px;width:70px; background-image: url('@Model.Event.Photo')"></div>
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Event.Author)
