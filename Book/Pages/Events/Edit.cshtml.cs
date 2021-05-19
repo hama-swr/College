@@ -8,36 +8,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Book.Data;
 
-namespace Book.Pages.Newses
+namespace Book.Pages.Events
 {
     public class EditModel : PageModel
     {
         private readonly Book.Data.ApplicationDbContext _context;
-        private readonly IHtmlHelper htmlHelper;
-        public IEnumerable<SelectListItem> NewsTypes { get; set; }
 
-        public EditModel(Book.Data.ApplicationDbContext context,
-                                         IHtmlHelper htmlHelper)
+        public EditModel(Book.Data.ApplicationDbContext context)
         {
             _context = context;
-            this.htmlHelper = htmlHelper;
         }
 
         [BindProperty]
-        public News News { get; set; }
+        public Event Event { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            NewsTypes = htmlHelper.GetEnumSelectList<NewsType>();
-
             if (id == null)
             {
                 return NotFound();
             }
 
-            News = await _context.News.FirstOrDefaultAsync(m => m.Id == id);
+            Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (News == null)
+            if (Event == null)
             {
                 return NotFound();
             }
@@ -48,14 +42,12 @@ namespace Book.Pages.Newses
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            NewsTypes = htmlHelper.GetEnumSelectList<NewsType>();
-
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(News).State = EntityState.Modified;
+            _context.Attach(Event).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +55,7 @@ namespace Book.Pages.Newses
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NewsExists(News.Id))
+                if (!EventExists(Event.Id))
                 {
                     return NotFound();
                 }
@@ -76,9 +68,9 @@ namespace Book.Pages.Newses
             return RedirectToPage("./Index");
         }
 
-        private bool NewsExists(int id)
+        private bool EventExists(int id)
         {
-            return _context.News.Any(e => e.Id == id);
+            return _context.Events.Any(e => e.Id == id);
         }
     }
 }

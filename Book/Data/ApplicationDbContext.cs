@@ -1,4 +1,5 @@
-﻿using Book.Pages.Newses;
+﻿using Book.Pages.Events;
+using Book.Pages.Newses;
 using Book.Pages.Students;
 using Book.Pages.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -19,5 +20,6 @@ namespace Book.Data
         public DbSet<User> User { get; set; }
         public DbSet<Student> Student { get; set; } 
         public DbSet<News> News { get; set; } 
+        public DbSet<Event> Events { get; set; } 
     }
 }

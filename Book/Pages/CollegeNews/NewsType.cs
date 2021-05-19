@@ -5,6 +5,11 @@
         General,
         Sports,
         Natural,
-        Jonrals
+        Academic,
+        scholarly_journals,
+        magazines,
+        Newspapers,
+        Newsletters,
+        E_journals
     }
 }
