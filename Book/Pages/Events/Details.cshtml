@@ -17,13 +17,15 @@
                 @Html.DisplayNameFor(model => model.Event.Title)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Event.Title)
+                <h1 class="text-primary font-weight-bolder">
+                    @Html.DisplayFor(model => model.Event.Title)
+                </h1>
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Event.Photo)
             </dt>
             <dd class="col-sm-10">
-                <div style=" background-size: cover;height: 70px;width:70px; background-image: url('@Model.Event.Photo')"></div>
+                <div style=" background-size: cover;height: 75vh;width:100%; background-image: url('@Model.Event.Photo')"></div>
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Event.Author)

@@ -18,11 +18,12 @@ namespace Book.Pages.Events
             _context = context;
         }
 
-        public IList<Event> Event { get;set; }
+        public IList<Event> Event { get; set; }
 
         public async Task OnGetAsync()
         {
             Event = await _context.Events.ToListAsync();
+            Event = Event.OrderByDescending(e => e.Id).ToList();
         }
     }
 }

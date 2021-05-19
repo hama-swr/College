@@ -23,6 +23,8 @@ namespace Book.Pages.Newses
         public async Task OnGetAsync()
         {
             News = await _context.News.ToListAsync();
+            News = News.OrderByDescending(e => e.Id).ToList();
+
         }
     }
 }
