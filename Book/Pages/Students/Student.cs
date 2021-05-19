@@ -12,6 +12,6 @@ namespace Book.Pages.Students
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string College { get; set; }
-        public string Photo { get; set; }
+        public string Photo { get; set; } 
     }
 }
