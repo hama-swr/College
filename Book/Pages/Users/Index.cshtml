@@ -3,13 +3,19 @@
 
 @{
     ViewData["Title"] = "Index";
+    var user = User.Identity.Name;
+
 }
 
 <div class="container justify-content-center">
     <h1>Index</h1>
-    <p>
-        <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
-    </p>
+    @if (user == "admin")
+    {
+        <p>
+            <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
+        </p>
+    }
+
 
     <div class="row">
         @foreach (var item in Model.User)
@@ -21,11 +27,22 @@
                         <h3 class="mt-2">@item.FirstName @item.MiddleName</h3>
                         <span class="mt-1 clearfix">@item.College</span>
                         <small class="mt-4">@item.UserType</small>
-                        <div class="mt-2">
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a class="text-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                        </div>
+
+                        @if (user == "admin")
+                        {
+                            <div class="mt-2">
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                <a class="text-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mt-2">
+                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            </div>
+                        }
+
                         <div class="social-buttons mt-4">
                             <button class="neo-button">
                                 <i class="fa fa-facebook fa-1x"></i>

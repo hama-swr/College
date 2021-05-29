@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Book.Data;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Book.Pages.Users
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly Book.Data.ApplicationDbContext _context;
