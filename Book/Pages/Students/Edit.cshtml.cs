@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Book.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Book.Pages.Students
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly Book.Data.ApplicationDbContext _context;

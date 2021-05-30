@@ -3,14 +3,19 @@
 
 @{
     ViewData["Title"] = "Index";
+    var user = User.Identity.Name;
 }
 
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <div class="container">
     <h1>Index</h1>
-    <p>
-        <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
-    </p>
+
+    @if (user == "admin")
+    {
+        <p>
+            <a class="btn btn-sm btn-primary" asp-page="Create">Create New</a>
+        </p>
+    }
 
     <div class="table-responsive text-left">
         <table id="customerDatatable" class="table table-striped text-left  table-hover" style="width:100%">
@@ -27,27 +32,38 @@
 
                 @foreach (var item in Model.Student)
                 {
-                    <tr>
+                <tr>
 
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="@item.Photo" width="30" height="30">
-                                <span class="ml-2">@item.FirstName</span>
-                            </div>
-                        </td>
-                        <td>
-                            @item.MiddleName
-                        </td>
-                        <td>
-                            @item.LastName
-                        </td>
-                        <td class="font-weight-bold">@item.College</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="@item.Photo" width="30" height="30">
+                            <span class="ml-2">@item.FirstName</span>
+                        </div>
+                    </td>
+                    <td>
+                        @item.MiddleName
+                    </td>
+                    <td>
+                        @item.LastName
+                    </td>
+                    <td class="font-weight-bold">@item.College</td>
+
+                    @if (user == "admin")
+                    {
                         <td>
                             <a class="btn btn-sm btn-info" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                             <a class="btn btn-sm btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                             <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
-                    </tr>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="btn btn-sm btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    }
+
+                </tr>
                 }
 
             </tbody>
