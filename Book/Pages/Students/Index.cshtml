@@ -24,6 +24,8 @@
                     <th>First Name</th>
                     <th>Middle Name</th>
                     <th>Last Name</th>
+                    <th>Grade Group</th>
+                    <th>Department</th>
                     <th>College</th>
                     <th></th>
                 </tr>
@@ -46,6 +48,10 @@
                     <td>
                         @item.LastName
                     </td>
+                    <td>
+                        @item.Grade@item.Group
+                    </td>
+                    <td class="font-weight-bold">@item.Department</td>
                     <td class="font-weight-bold">@item.College</td>
 
                     @if (user == "admin")

@@ -14,14 +14,19 @@ namespace Book.Pages.Students
     public class CreateModel : PageModel
     {
         private readonly Book.Data.ApplicationDbContext _context;
+        private readonly IHtmlHelper htmlHelper;
+        public IEnumerable<SelectListItem> Departments { get; set; }
 
-        public CreateModel(Book.Data.ApplicationDbContext context)
+        public CreateModel(Book.Data.ApplicationDbContext context,
+                                            IHtmlHelper htmlHelper)
         {
             _context = context;
+            this.htmlHelper = htmlHelper;
         }
 
         public IActionResult OnGet()
         {
+            Departments = htmlHelper.GetEnumSelectList<Department>();
             return Page();
         }
 
@@ -32,6 +37,8 @@ namespace Book.Pages.Students
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            Departments = htmlHelper.GetEnumSelectList<Department>();
+
             if (!ModelState.IsValid)
             {
                 return Page();
